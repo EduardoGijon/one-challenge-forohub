@@ -12,16 +12,15 @@ INSERT INTO curso (nombre, categoria) VALUES ('React', 'Frontend');
 INSERT INTO curso (nombre, categoria) VALUES ('MySQL', 'Base de Datos');
 INSERT INTO curso (nombre, categoria) VALUES ('Python', 'Backend');
 
--- Insertar usuarios (contraseña en texto plano: "123456" - en producción usar BCrypt)
--- En un proyecto real, deberías hashear las contraseñas: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+-- Insertar usuarios (contraseña: "123456" hasheada con BCrypt)
 INSERT INTO usuario (nombre, correo_electronico, contrasena)
-VALUES ('Admin User', 'admin@forohub.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+VALUES ('Admin User', 'admin@forohub.com', '$2a$10$JK/CkhjOA/8zSFKYvKRwZeMcouyJ1AcSKLT.1sKGfLvYJEEQl03ni');
 
 INSERT INTO usuario (nombre, correo_electronico, contrasena)
-VALUES ('Juan Pérez', 'juan@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+VALUES ('Juan Pérez', 'juan@example.com', '$2a$10$JK/CkhjOA/8zSFKYvKRwZeMcouyJ1AcSKLT.1sKGfLvYJEEQl03ni');
 
 INSERT INTO usuario (nombre, correo_electronico, contrasena)
-VALUES ('María López', 'maria@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+VALUES ('María López', 'maria@example.com', '$2a$10$JK/CkhjOA/8zSFKYvKRwZeMcouyJ1AcSKLT.1sKGfLvYJEEQl03ni');
 
 -- Asignar perfiles a usuarios
 INSERT INTO usuario_perfil (usuario_id, perfil_id) VALUES (1, 1); -- Admin tiene ROLE_ADMIN
