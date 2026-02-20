@@ -241,13 +241,6 @@ src/main/resources/
 
 ---
 
-## 📦 Cursos disponibles
-
-- Spring Boot
-- Java
-- React
-- MySQL
-- Python
 
 ---
 
@@ -262,5 +255,5 @@ src/main/resources/
 ---
 
 ## 👨‍💻 Autor
-
+Jose Gijon
 Desarrollado como parte del **Challenge ForoHub** de [Alura Latam](https://www.aluracursos.com/).
