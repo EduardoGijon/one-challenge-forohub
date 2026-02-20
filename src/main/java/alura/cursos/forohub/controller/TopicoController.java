@@ -6,7 +6,6 @@ import alura.cursos.forohub.domain.topico.dto.DatosListadoTopico;
 import alura.cursos.forohub.domain.topico.dto.DatosRegistroTopico;
 import alura.cursos.forohub.domain.topico.dto.DatosRespuestaTopico;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,8 +18,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/topicos")
 public class TopicoController {
 
-    @Autowired
-    private TopicoService topicoService;
+    private final TopicoService topicoService;
+
+    public TopicoController(TopicoService topicoService) {
+        this.topicoService = topicoService;
+    }
 
     @PostMapping
     public ResponseEntity<DatosRespuestaTopico> crearTopico(

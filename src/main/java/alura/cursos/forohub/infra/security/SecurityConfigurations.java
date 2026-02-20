@@ -1,6 +1,5 @@
 package alura.cursos.forohub.infra.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,11 +18,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigurations {
 
-    @Autowired
-    private SecurityFilter securityFilter;
+    private final SecurityFilter securityFilter;
+    private final AutenticacionService autenticacionService;
 
-    @Autowired
-    private AutenticacionService autenticacionService;
+    public SecurityConfigurations(SecurityFilter securityFilter, AutenticacionService autenticacionService) {
+        this.securityFilter = securityFilter;
+        this.autenticacionService = autenticacionService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,4 +58,3 @@ public class SecurityConfigurations {
         return new BCryptPasswordEncoder();
     }
 }
-

@@ -10,7 +10,6 @@ import alura.cursos.forohub.domain.usuario.UsuarioRepository;
 import alura.cursos.forohub.infra.errores.ValidacionException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,17 +19,20 @@ import java.time.LocalDateTime;
 @Service
 public class TopicoService {
 
-    @Autowired
-    private TopicoRepository topicoRepository;
+    private final TopicoRepository topicoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final CursoRepository cursoRepository;
+    private final RespuestaRepository respuestaRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private CursoRepository cursoRepository;
-
-    @Autowired
-    private RespuestaRepository respuestaRepository;
+    public TopicoService(TopicoRepository topicoRepository,
+                         UsuarioRepository usuarioRepository,
+                         CursoRepository cursoRepository,
+                         RespuestaRepository respuestaRepository) {
+        this.topicoRepository = topicoRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.cursoRepository = cursoRepository;
+        this.respuestaRepository = respuestaRepository;
+    }
 
     @Transactional
     public DatosRespuestaTopico crearTopico(DatosRegistroTopico datos) {

@@ -5,24 +5,22 @@ import alura.cursos.forohub.domain.usuario.Usuario;
 import alura.cursos.forohub.infra.security.DatosTokenJWT;
 import alura.cursos.forohub.infra.security.TokenService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
 public class AutenticacionController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
-    @Autowired
-    private TokenService tokenService;
+    public AutenticacionController(AuthenticationManager authenticationManager, TokenService tokenService) {
+        this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
+    }
 
     /**
      * Endpoint POST /login
@@ -40,9 +38,10 @@ public class AutenticacionController {
 
         var usuarioAutenticado = authenticationManager.authenticate(authToken);
 
-        var tokenJWT = tokenService.generarToken((Usuario) usuarioAutenticado.getPrincipal());
+        var principal = (Usuario) usuarioAutenticado.getPrincipal();
+
+        var tokenJWT = tokenService.generarToken(principal);
 
         return ResponseEntity.ok(new DatosTokenJWT(tokenJWT));
     }
 }
-
